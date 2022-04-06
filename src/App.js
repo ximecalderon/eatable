@@ -1,3 +1,5 @@
+import AuthenticatedApp from "./AuthenticatedApp"
+
 function App() {
   //  / => nonauthenticated app maneja login y sgn-up
   // / => ruta de home muestra productos si estas loggeado
@@ -8,7 +10,7 @@ function App() {
   // /profile
 
   return (
-    <p>Hola</p>
+    <AuthenticatedApp />
   );
 }
 
