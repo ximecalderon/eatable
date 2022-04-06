@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { colors } from "./colors";
+import { colors, shadow } from "./colors";
 import { typography } from "./typography";
 
 export const reset = css`
@@ -85,10 +85,17 @@ export const global = css`
   @import url("@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');");
   body {
     font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    justify-content: center;
     padding: 1rem;
-    max-width: 460px;
-    margin: 0 auto;
-    color: ${colors.black};
+    background-color: ${colors.gray};
     ${typography.size.m}
+  }
+
+  #root {
+    width: 460px;
+    color: ${colors.black};
+    background-color: ${colors.backgroundGray};
+    box-shadow: ${shadow.pageHeader}
   }
 `;
