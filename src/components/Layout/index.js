@@ -4,39 +4,19 @@ import { CgHome } from 'react-icons/cg';
 import { FiUser } from 'react-icons/fi';
 import { BiHistory } from 'react-icons/bi';
 import { AiOutlineLeft } from 'react-icons/ai';
+import { LayoutStyles, Header, ItemsNav, Title } from './styles';
 
 const Layout = () => {
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState('');
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                height: '100%',
-            }}
-        >
-            <header
-                style={{
-                    padding: 20,
-                    position: 'relative',
-                }}
-            >
+        <LayoutStyles>
+            <Header>
                 <AiOutlineLeft style={{ position: 'absolute', fontSize: 25 }} />
-                <h1 style={{ textAlign: 'center' }}>{title}</h1>
-            </header>
+                <Title>{title}</Title>
+            </Header>
             <Outlet context={{ setTitle }} />
             <nav>
-                <ul
-                    style={{
-                        appearance: 'none',
-                        listStyle: 'none',
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                        margin: 0,
-                        padding: 0,
-                    }}
-                >
+                <ItemsNav>
                     <li>
                         <Link to='/'>
                             <CgHome style={{ fontSize: 30 }} />
@@ -52,9 +32,9 @@ const Layout = () => {
                             <BiHistory style={{ fontSize: 30 }} />
                         </Link>
                     </li>
-                </ul>
+                </ItemsNav>
             </nav>
-        </div>
+        </LayoutStyles>
     );
 };
 

@@ -1,10 +1,14 @@
 import FoodCard from '../components/FoodCard';
+import { useEffect } from 'react';
 import FoodPicture from '../components/FoodPicture';
 import { useOutletContext } from 'react-router-dom';
 
 function HomePage() {
     const { setTitle } = useOutletContext();
-    setTitle('Home');
+    useEffect(() => {
+        setTitle('Home');
+    }, [setTitle]);
+
     const mockProduct = {
         id: 1,
         name: 'green cream',
