@@ -9,7 +9,7 @@ export const LayoutStyles = styled.div`
 
 export const Header = styled.header`
     position: relative;
-    padding: 20px;
+    padding: 20px 0;
 `;
 
 export const Title = styled.h1`
@@ -18,7 +18,7 @@ export const Title = styled.h1`
 
 export const ItemsNav = styled.ul`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
     list-style: none;
