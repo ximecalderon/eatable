@@ -5,7 +5,7 @@ import * as Styled from "./styles";
 import { useState } from "react";
 import CategoriesMain from "./categoriesMain";
 import SearchMain from "./searchMain";
-import { useAuth } from "../../context/auth-context";
+import { useProducts } from "../../context/products-context";
 import { useOutletContext } from 'react-router-dom';
 import { useEffect } from "react";
 
@@ -76,9 +76,10 @@ const mockProducts = [
   }
 ];
 
-function HomePage({ products = mockProducts }) {
+function HomePage() {
   const { setTitle } = useOutletContext();
   const [search, setSearch] = useState("");
+  const products = useProducts();
 
   useEffect(() => {
     setTitle('Home');

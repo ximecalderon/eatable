@@ -1,6 +1,7 @@
 import * as Styled from "./styles";
 import FoodCard from "../../components/FoodCard";
 import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function SearchMain({ products, search }) {
   const [results, setResults] = useState(null);
@@ -18,6 +19,8 @@ function SearchMain({ products, search }) {
     return () => clearTimeout(delayDebounce)
   }, [search, products]);
 
+  const navigate = useNavigate();
+
   return (
     <Styled.Body>
       {loading ? <Styled.Message>Searching...</Styled.Message> :
@@ -31,6 +34,7 @@ function SearchMain({ products, search }) {
               name={product.name}
               picture_url={product.picture_url}
               price={product.price}
+              onClick={() => navigate(`/products/${product.id}`, { replace: true })}
             />
           })}
         </Styled.ProductsContainer> :

@@ -21,7 +21,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2.625rem;
+  padding: 1.125rem;
 `;
 
 export const Body = styled.div`
