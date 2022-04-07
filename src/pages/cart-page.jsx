@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import CartCard from "../components/CartCard/card-cart";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
@@ -44,24 +45,6 @@ const CardsContainer = styled.div`
   gap: 20;
   width: 100%;
 `;
-
-const user = {
-  name: "Testino Diprueba",
-  email: "test@mail.com",
-  phone: "987654321",
-  address: "Lima-Peru",
-  token: "fqDXac7KUQu84TitS1f1A8Sf",
-};
-
-const respuesta = {
-  delivery_address: user.address,
-  items: [
-    { id: 1, quantity: 1 },
-    { id: 4, quantity: 1 },
-    { id: 10, quantity: 5 },
-  ],
-};
-
 const TotalText = styled.p`
   ${typography.size.m}
 `;
@@ -71,22 +54,29 @@ const TotalNumber = styled.p`
 `;
 
 function CartPage({ products }) {
-  const startValue = products.map((product) => {
+  //Sets the name of the page
+  const { setTitle } = useOutletContext();
+  useEffect(() => {
+    setTitle("Cart");
+  }, [setTitle]);
+  //
+  const startValues = products.map((product) => {
     return { id: product.id, price: product.price };
   });
 
-  const suma = startValue.map((value) => {
-    return value.price;
-  });
-  const totalprice = suma.reduce((a, b) => a + b);
+  const totalPrice = startValues
+    .map((value) => value.price)
+    .reduce((a, b) => a + b);
 
-  const [total, setTotal] = useState(totalprice);
-  const [first, setFirst] = useState(startValue);
+  const [total, setTotal] = useState(totalPrice);
+  const [first, setFirst] = useState(startValues);
 
-  function handleChange(first, id, value) {
+  function handleChange(first, id, value, startValues) {
+    const initial = startValues.find((data) => data.id === id);
     const selectedObj = first.find((data) => data.id === id);
     setFirst(() => {
       selectedObj.price = value;
+      selectedObj.quantity = selectedObj.price / initial.price;
       return first;
     });
   }
@@ -95,9 +85,12 @@ function CartPage({ products }) {
     setTotal(first.map((obj) => obj.price).reduce((a, b) => a + b));
   }
 
+  const DataCart = { first, total };
+  console.log(DataCart);
+
   return (
     <CartContainer>
-      <h1
+      {/* <h1
         style={{
           textAlign: "center",
           marginBottom: "2.5rem",
@@ -105,7 +98,7 @@ function CartPage({ products }) {
         }}
       >
         Cart
-      </h1>
+      </h1> */}
       <CardsContainer>
         {products.map((product) => (
           <CartCard
@@ -114,6 +107,7 @@ function CartPage({ products }) {
             product={product}
             first={first}
             handleTotal={handleTotal}
+            initialValue={startValues}
           />
         ))}
       </CardsContainer>

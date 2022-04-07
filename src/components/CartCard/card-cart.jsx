@@ -49,10 +49,7 @@ const PlusLessButton = styled.span`
   cursor: pointer;
 `;
 
-function CartCard({ handleChange, product, first, handleTotal }) {
-  // console.log(product);
-  // console.log(handleChange);
-  // console.log(first);
+function CartCard({ handleChange, product, first, handleTotal, initialValue }) {
   const [count, setCount] = useState(1);
   const [subTotal, setSubtotal] = useState(product.price);
   function handleAdd() {
@@ -69,7 +66,7 @@ function CartCard({ handleChange, product, first, handleTotal }) {
 
   useEffect(() => {
     setSubtotal(product.price * count);
-    handleChange(first, product.id, subTotal);
+    handleChange(first, product.id, subTotal, initialValue);
     handleTotal(first);
   }, [count, subTotal]);
 
