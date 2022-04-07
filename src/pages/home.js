@@ -1,10 +1,12 @@
 import FoodCard from '../components/FoodCard';
 import { useEffect } from 'react';
 import FoodPicture from '../components/FoodPicture';
+import { useAuth } from '../context/auth-context';
 import { useOutletContext } from 'react-router-dom';
 
 function HomePage() {
     const { setTitle } = useOutletContext();
+    const { logout } = useAuth();
     useEffect(() => {
         setTitle('Home');
     }, [setTitle]);
@@ -22,6 +24,7 @@ function HomePage() {
 
     return (
         <>
+            <p onClick={logout}> Log out </p>
             <FoodCard
                 name={mockProduct.name}
                 picture_url={mockProduct.picture_url}
