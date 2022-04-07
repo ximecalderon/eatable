@@ -5,6 +5,9 @@ import * as Styled from "./styles";
 import { useState } from "react";
 import CategoriesMain from "./categoriesMain";
 import SearchMain from "./searchMain";
+import { useAuth } from "../../context/auth-context";
+import { useOutletContext } from 'react-router-dom';
+import { useEffect } from "react";
 
 const mockProducts = [
   {
@@ -74,7 +77,12 @@ const mockProducts = [
 ];
 
 function HomePage({ products = mockProducts }) {
+  const { setTitle } = useOutletContext();
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setTitle('Home');
+  }, [setTitle]);
 
   function handleSearch(event) {
     const { value } = event.target;
