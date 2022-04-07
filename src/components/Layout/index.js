@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Outlet, NavLink } from 'react-router-dom';
 import { CgHome } from 'react-icons/cg';
 import { FiUser } from 'react-icons/fi';
@@ -8,10 +9,19 @@ import { LayoutStyles, Header, ItemsNav, Title } from './styles';
 
 const Layout = () => {
     const [title, setTitle] = useState('');
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <LayoutStyles>
             <Header>
-                <AiOutlineLeft style={{ position: 'absolute', fontSize: 25 }} />
+                <AiOutlineLeft
+                    style={{ position: 'absolute', fontSize: 25 }}
+                    onClick={handleBack}
+                />
                 <Title>{title}</Title>
             </Header>
             <Outlet context={{ setTitle }} />
