@@ -9,7 +9,7 @@ export const Input = styled.input`
 
   &::placeholder {
     ${typography.size.s}
-    color: ${colors.gray}
+    color: ${colors.textGray}
   }
 
   &:focus {
@@ -20,6 +20,7 @@ export const Input = styled.input`
 `;
 
 export const InputContainer = styled.div`
+  width: 100%;
   display: flex;
   gap: 0.75rem;
   align-items: center;
