@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 import CartCard from "../components/CartCard/card-cart";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
@@ -6,7 +7,7 @@ import { typography } from "../styles/typography";
 const CartContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 3.125rem 2rem;
+  padding: 2rem 3.125rem;
   height: 100vh;
   flex-direction: column;
 `;
@@ -28,7 +29,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const FooterCart = styled.footer`
+const FooterContainer = styled.footer`
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -69,13 +70,31 @@ const TotalNumber = styled.p`
   ${typography.weigth.semibold}
 `;
 
-function handleCheckout() {
-  console.log(respuesta);
-}
-
-const OrderPrices = [];
-
 function CartPage({ products }) {
+  const startValue = products.map((product) => {
+    return { id: product.id, price: product.price };
+  });
+
+  const suma = startValue.map((value) => {
+    return value.price;
+  });
+  const totalprice = suma.reduce((a, b) => a + b);
+
+  const [total, setTotal] = useState(totalprice);
+  const [first, setFirst] = useState(startValue);
+
+  function handleChange(first, id, value) {
+    const selectedObj = first.find((data) => data.id === id);
+    setFirst(() => {
+      selectedObj.price = value;
+      return first;
+    });
+  }
+
+  function handleTotal(first) {
+    setTotal(first.map((obj) => obj.price).reduce((a, b) => a + b));
+  }
+
   return (
     <CartContainer>
       <h1
@@ -89,16 +108,22 @@ function CartPage({ products }) {
       </h1>
       <CardsContainer>
         {products.map((product) => (
-          <CartCard key={product.id} {...product} />
+          <CartCard
+            key={product.id}
+            handleChange={handleChange}
+            product={product}
+            first={first}
+            handleTotal={handleTotal}
+          />
         ))}
       </CardsContainer>
-      <FooterCart>
+      <FooterContainer>
         <ContTotalPrice>
           <TotalText>Total</TotalText>
-          <TotalNumber>$97.90</TotalNumber>
+          <TotalNumber>${(total / 100).toFixed(2)}</TotalNumber>
         </ContTotalPrice>
-        <StyledButton onClick={handleCheckout}>Checkout</StyledButton>
-      </FooterCart>
+        <StyledButton>Checkout</StyledButton>
+      </FooterContainer>
     </CartContainer>
   );
 }

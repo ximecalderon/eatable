@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import FoodPicture from "../FoodPicture";
 import { typography } from "../../styles/typography";
 import { colors } from "../../styles/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CardContainer = styled.div`
   display: flex;
@@ -49,7 +49,12 @@ const PlusLessButton = styled.span`
   cursor: pointer;
 `;
 
-function CartCard(product) {
+function CartCard({ handleChange, product, first, handleTotal }) {
+  // console.log(product);
+  // console.log(handleChange);
+  // console.log(first);
+  const [count, setCount] = useState(1);
+  const [subTotal, setSubtotal] = useState(product.price);
   function handleAdd() {
     setCount(count + 1);
   }
@@ -61,14 +66,20 @@ function CartCard(product) {
       return count;
     }
   }
-  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    setSubtotal(product.price * count);
+    handleChange(first, product.id, subTotal);
+    handleTotal(first);
+  }, [count, subTotal]);
+
   return (
     <CardContainer>
       <FoodPicture url={product.picture_url} size={"sm"} alt={product.name} />
       <PlateInfoCont>
         <PlateName>{product.name}</PlateName>
         <FooterCard>
-          <PlatePrice>${((product.price / 100) * count).toFixed(2)}</PlatePrice>
+          <PlatePrice>${(subTotal / 100).toFixed(2)}</PlatePrice>
           <ButtonCard>
             <p>
               <PlusLessButton onClick={handleDisc}>-</PlusLessButton> {count}{" "}
