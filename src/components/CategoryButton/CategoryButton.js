@@ -1,11 +1,12 @@
 import { Button } from "./styles";
+import { toCamelCase } from "../../utils";
 
 function CategoryButton({ children, ...rest }) {
   return (
     <Button
       {...rest}
     >
-      {children}
+      {toCamelCase(children)}
     </Button>
   )
 };

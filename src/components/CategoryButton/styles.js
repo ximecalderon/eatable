@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import { colors } from "../../styles/colors";
 import { typography } from "../../styles/typography";
-import { css } from "@emotion/react";
 
 export const Button = styled.button`
   background-color: inherit;
   border: none;
   padding: 13px;
-  ${typography.size.m}
+  ${typography.size.s}
   color: ${colors.textGray};
   cursor: pointer;
 

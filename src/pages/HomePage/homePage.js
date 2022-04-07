@@ -1,7 +1,7 @@
 import FoodCard from "../../components/FoodCard";
 import CategoryButton from "../../components/CategoryButton";
+import SearchInput from "../../components/SearchInput";
 import * as Styled from "./styles";
-import { toCamelCase } from "../../utils";
 import { useState } from "react";
 
 const mockProducts = [
@@ -71,24 +71,23 @@ const mockProducts = [
   }
 ];
 
-const mockCategories = ["Pasta", "Pizzas", "hamburguers", "Salchipapa", "Chifa", "Snacks", "Buffet"];
-
-function HomePage() {
-  const categories = mockProducts.reduce((categories, currentProduct) => {
-    const newCategory = toCamelCase(currentProduct.category)
+function HomePage({ products = mockProducts }) {
+  const categories = products.reduce((categories, currentProduct) => {
+    const newCategory = currentProduct.category;
 
     if (categories.includes(newCategory)) return [...categories];
     return [...categories, newCategory]
   }, []);
 
-  const [currentCategory, setCurrentCategory] = useState(mockCategories[0]);
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
-  // to fix: grid gap
+  const filteredProducts = products.filter(product => product.category === currentCategory);
 
   return (
-    <div>
+    <Styled.Container>
+      <SearchInput placeholder="Search" />
       <Styled.CategoriesContainer>
-        {mockCategories.map(category => {
+        {categories.map(category => {
           return <CategoryButton
             key={category}
             isActive={category === currentCategory}
@@ -99,7 +98,7 @@ function HomePage() {
         })}
       </Styled.CategoriesContainer>
       <Styled.ProductsContainer>
-        {mockProducts.map(product => {
+        {filteredProducts.map(product => {
           return <FoodCard
             key={product.id}
             name={product.name}
@@ -108,7 +107,7 @@ function HomePage() {
           />
         })}
       </Styled.ProductsContainer>
-    </div>
+    </Styled.Container>
   )
 };
 
