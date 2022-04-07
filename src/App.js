@@ -1,4 +1,6 @@
-import AuthenticatedApp from "./AuthenticatedApp"
+import AuthenticatedApp from "./AuthenticatedApp";
+import { useAuth } from "./context/auth-context";
+import UnauthenticatedApp from "./UnauthenticatedApp";
 
 function App() {
   //  / => nonauthenticated app maneja login y sgn-up
@@ -9,9 +11,9 @@ function App() {
   // /history
   // /profile
 
-  return (
-    <AuthenticatedApp />
-  );
+  const { user } = useAuth();
+
+  return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
 export default App;
