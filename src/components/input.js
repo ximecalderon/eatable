@@ -3,11 +3,11 @@ import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
 const StyledInput = styled.input`
   padding: 0.5rem;
-  ${typography.lg};
-  border-radius: 1rem;
-  border: none;
-  background-color: white;
-  color: ${colors.gray.dark};
+  ${typography.size.m};
+  border: 0;
+  border-bottom: 2px solid gray;
+  background: transparent;
+  outline: 0;
 `;
 
 const InputContainer = styled.div`
@@ -17,8 +17,14 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
+const Label = styled.p`
+  ${typography.size.caption}
+  ${typography.weigth.semibold}
+  color: ${colors.gray};
+`;
+
 const Error = styled.p`
-  color: red;
+  color: orange;
   padding-left: 1rem;
 `;
 
@@ -35,7 +41,7 @@ function Input({
 
   return (
     <InputContainer>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <Label htmlFor={id}>{label}</Label>}
       <StyledInput
         id={id}
         name={name}
