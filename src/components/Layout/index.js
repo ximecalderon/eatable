@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { CgHome } from 'react-icons/cg';
 import { FiUser } from 'react-icons/fi';
 import { BiHistory } from 'react-icons/bi';
@@ -18,19 +18,34 @@ const Layout = () => {
             <nav>
                 <ItemsNav>
                     <li>
-                        <Link to='/'>
+                        <NavLink
+                            to='/'
+                            className={({ isActive }) =>
+                                isActive ? 'link-active' : 'link'
+                            }
+                        >
                             <CgHome style={{ fontSize: 30 }} />
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to='/profile'>
+                        <NavLink
+                            to='/profile'
+                            className={({ isActive }) =>
+                                isActive ? 'link-active' : 'link'
+                            }
+                        >
                             <FiUser style={{ fontSize: 30 }} />
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to='/history'>
+                        <NavLink
+                            to='/history'
+                            className={({ isActive }) =>
+                                isActive ? 'link-active' : 'link'
+                            }
+                        >
                             <BiHistory style={{ fontSize: 30 }} />
-                        </Link>
+                        </NavLink>
                     </li>
                 </ItemsNav>
             </nav>
