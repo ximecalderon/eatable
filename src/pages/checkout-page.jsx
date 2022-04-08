@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useAuth } from "../context/auth-context";
+import apiFetch from "../services/api-fetch";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
 
@@ -10,14 +12,6 @@ const CheckoutContainer = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-
-const user = {
-  name: "Testino Diprueba",
-  email: "test@mail.com",
-  phone: "987654321",
-  address: "Lima-Peru",
-  token: "fqDXac7KUQu84TitS1f1A8Sf",
-};
 
 const TextDelivery = styled.p`
   ${typography.size.xl}
@@ -53,7 +47,7 @@ const FooterContainer = styled.footer`
   display: flex;
   position: absolute;
   flex-direction: column;
-  bottom: 5%;
+  bottom: 1%;
   margin: 0 auto;
   gap: 2rem;
 `;
@@ -83,11 +77,22 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-function handleCheckout(order) {
-  console.log("test");
-}
+function CheckoutPage({ orderData }) {
+  const { user } = useAuth();
+  async function completeOrder() {
+    await apiFetch("/orders", { body: order });
+    console.log(order);
+  }
 
-function CheckoutPage(order) {
+  const price = orderData.first.map((order) => {
+    return delete order.price;
+  });
+
+  const order = {
+    delivery_address: user.address,
+    items: orderData.first,
+  };
+  console.log(order);
   return (
     <CheckoutContainer>
       <h1
@@ -112,9 +117,9 @@ function CheckoutPage(order) {
       <FooterContainer>
         <ContTotalPrice>
           <TotalText>Total</TotalText>
-          <TotalNumber>$97.90</TotalNumber>
+          <TotalNumber>${(orderData.total / 100).toFixed(2)}</TotalNumber>
         </ContTotalPrice>
-        <StyledButton onClick={handleCheckout}>Checkout</StyledButton>
+        <StyledButton onClick={completeOrder}>Checkout</StyledButton>
       </FooterContainer>
     </CheckoutContainer>
   );
