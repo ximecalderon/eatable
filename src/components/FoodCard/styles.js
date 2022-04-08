@@ -5,6 +5,7 @@ import { typography } from "../../styles/typography";
 export const Container = styled.div`
   width: fit-content;
   height: fit-content;
+  cursor: pointer;
   `
 export const ProductInfo = styled.div`
   position: relative;
