@@ -1,13 +1,15 @@
-import { Button } from "./styles";
+/** @jsxImportSource @emotion/react */
+import * as Styled from "./styles";
 import { toCamelCase } from "../../utils";
 
-function CategoryButton({ children, ...rest }) {
+function CategoryButton({ children, active, ...rest }) {
   return (
-    <Button
+    < Styled.Button
+      css={active ? Styled.active : null}
       {...rest}
     >
       {toCamelCase(children)}
-    </Button>
+    </ Styled.Button>
   )
 };
 

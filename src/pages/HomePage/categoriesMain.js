@@ -1,8 +1,8 @@
 import CategoryButton from "../../components/CategoryButton";
 import FoodCard from "../../components/FoodCard";
 import * as Styled from "./styles";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function CategoriesMain({ products }) {
   const categories = products.reduce((categories, currentProduct) => {
@@ -12,9 +12,16 @@ function CategoriesMain({ products }) {
     return [...categories, newCategory]
   }, []);
 
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [currentCategory, setCurrentCategory] = useState(null);
+
+  const firstCategory = categories[0];
+
+  useEffect(() => {
+    setCurrentCategory(firstCategory)
+  }, [firstCategory])
 
   const filteredProducts = products.filter(product => product.category === currentCategory);
+
   const navigate = useNavigate();
 
   return (
@@ -23,7 +30,7 @@ function CategoriesMain({ products }) {
         {categories.map(category => {
           return <CategoryButton
             key={category}
-            isActive={category === currentCategory}
+            active={category === currentCategory}
             onClick={() => setCurrentCategory(category)}
           >
             {category}
