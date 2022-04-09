@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { typography } from '../../styles/typography';
 
 export const LayoutStyles = styled.div`
     display: flex;
@@ -13,6 +14,8 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
+    ${typography.size.l}
+    ${typography.weigth.semibold}
     text-align: center;
 `;
 

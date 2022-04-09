@@ -13,7 +13,7 @@ export const md = css`
 width: 130px;
 height: 130px;
 object-fit: cover;
-border-radius: 100px;
+border-radius: 100%;
 box-shadow: ${shadow.image};
 `;
 
