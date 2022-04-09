@@ -84,7 +84,7 @@ function CheckoutPage({ orderData }) {
   const { user } = useAuth();
   async function completeOrder() {
     createOrder(order);
-    navigate("/");
+    navigate("/history");
   }
 
   const price = orderData.first.map((order) => {
@@ -122,7 +122,7 @@ function CheckoutPage({ orderData }) {
           <TotalText>Total</TotalText>
           <TotalNumber>${(orderData.total / 100).toFixed(2)}</TotalNumber>
         </ContTotalPrice>
-        <StyledButton onClick={completeOrder}>Checkout</StyledButton>
+        <StyledButton onClick={completeOrder}>Complete Order</StyledButton>
       </FooterContainer>
     </CheckoutContainer>
   );

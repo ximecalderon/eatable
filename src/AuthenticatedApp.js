@@ -6,7 +6,7 @@ import Layout from "./components/Layout";
 import CheckoutPage from "./pages/checkout-page";
 import { ProductsProvider } from "./context/products-context";
 import { useState } from "react";
-import HistoryPage from "./pages/history-page";
+import HistoryPage from "./pages/history/history-page";
 
 const Data = [
   {
