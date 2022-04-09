@@ -5,9 +5,8 @@ import * as Styled from "./styles";
 import CategoriesMain from "./categoriesMain";
 import SearchMain from "./searchMain";
 import { useProducts } from "../../context/products-context";
-import { useOutletContext } from 'react-router-dom';
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 function HomePage() {
   const { setTitle } = useOutletContext();
@@ -15,7 +14,7 @@ function HomePage() {
   const products = useProducts();
 
   useEffect(() => {
-    setTitle('Home');
+    setTitle(null);
   }, [setTitle]);
 
   function handleSearch(event) {

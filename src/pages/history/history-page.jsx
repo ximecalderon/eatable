@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getOrders } from "../../services/order-service";
 import styled from "@emotion/styled";
 import CardOrder from "./card-deatils";
-import { Title } from "../../components/FoodCard/styles";
 import EmptyHistory from "./empty-history";
 import { useOutletContext } from "react-router-dom";
 

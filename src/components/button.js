@@ -18,6 +18,10 @@ const StyledButton = styled.button`
   height: 70px;
   width: 314px;
   margin-top: 11rem;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 function Button(props) {
