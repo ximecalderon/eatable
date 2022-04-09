@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import apiFetch from "../services/api-fetch";
+import { createOrder } from "../services/order-service";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
 
@@ -78,10 +80,11 @@ const StyledButton = styled.button`
 `;
 
 function CheckoutPage({ orderData }) {
+  const navigate = useNavigate();
   const { user } = useAuth();
   async function completeOrder() {
-    await apiFetch("/orders", { body: order });
-    console.log(order);
+    createOrder(order);
+    navigate("/");
   }
 
   const price = orderData.first.map((order) => {
