@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import Button from "./button";
 import Input from "./input";
@@ -16,21 +17,18 @@ export default function SignupForm() {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    first_name: "",
-    last_name: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    first_name: "",
-    last_name: "",
   });
 
   function handleSubmit(event) {
     event.preventDefault();
 
     signup(form).catch((error) => {
+      console.log(error.message);
       const newErrors = JSON.parse(error.message);
       setErrors({ ...errors, ...newErrors });
     });
@@ -63,7 +61,7 @@ export default function SignupForm() {
         onChange={handleFormChange}
         error={errors.password.toString()}
       />
-
+      {/* <NavLink to="/profile">      </NavLink> */}
       <Button fullWidth type="submit">
         Sign-up
       </Button>

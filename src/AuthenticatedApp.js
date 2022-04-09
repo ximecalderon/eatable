@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import CheckoutPage from "./pages/checkout-page";
 import { ProductsProvider } from "./context/products-context";
 import { useState } from "react";
+import ProfilePage from "./pages/profile";
 
 const Data = [
   {
@@ -62,7 +63,7 @@ function AuthenticatedApp() {
           <Route path="/" element={<HomePage />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/history" element={<div>History</div>} />
-          <Route path="/profile" element={<div>Profile</div>} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="/cart"
             element={
