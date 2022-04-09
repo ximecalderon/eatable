@@ -1,28 +1,13 @@
 import Button from '../button';
+import { Container, Image, Product, Price } from './styles';
 
 const FoodDetail = ({ product, handleAddProduct }) => (
-    <div
-        style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-        }}
-    >
-        <img
-            src={product.picture_url}
-            alt={product.name}
-            style={{
-                height: 250,
-                width: 250,
-                borderRadius: '50%',
-            }}
-        />
+    <Container>
+        <Image src={product.picture_url} alt={product.name} />
         <div>
             <div style={{ textAlign: 'center' }}>
-                <h2>{product.name}</h2>
-                <p>$ {product.price}</p>
+                <Product>{product.name}</Product>
+                <Price>$ {product.price}</Price>
             </div>
 
             <div>
@@ -30,10 +15,13 @@ const FoodDetail = ({ product, handleAddProduct }) => (
                 <p>{product.description}</p>
             </div>
         </div>
-        <Button style={{ width: '100%' }} onClick={handleAddProduct}>
+        <Button
+            style={{ width: '100%', marginTop: 0 }}
+            onClick={handleAddProduct}
+        >
             Add to cart
         </Button>
-    </div>
+    </Container>
 );
 
 export default FoodDetail;
