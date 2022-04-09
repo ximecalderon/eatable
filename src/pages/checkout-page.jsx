@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
-import apiFetch from "../services/api-fetch";
 import { createOrder } from "../services/order-service";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
@@ -84,7 +83,7 @@ function CheckoutPage({ orderData }) {
   const { user } = useAuth();
   async function completeOrder() {
     createOrder(order);
-    navigate("/");
+    navigate("/history");
   }
 
   const price = orderData.first.map((order) => {
@@ -122,7 +121,7 @@ function CheckoutPage({ orderData }) {
           <TotalText>Total</TotalText>
           <TotalNumber>${(orderData.total / 100).toFixed(2)}</TotalNumber>
         </ContTotalPrice>
-        <StyledButton onClick={completeOrder}>Checkout</StyledButton>
+        <StyledButton onClick={completeOrder}>Complete Order</StyledButton>
       </FooterContainer>
     </CheckoutContainer>
   );
