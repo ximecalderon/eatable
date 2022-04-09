@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { useAuth } from "../context/auth-context";
+import Button from "./button";
 import Input from "./input";
 
 const StyledForm = styled.form`
@@ -46,7 +47,7 @@ export default function SignupForm() {
     <StyledForm onSubmit={handleSubmit}>
       <Input
         id="email"
-        label="Email"
+        label="Email adress"
         type="email"
         placeholder="example@mail.com"
         value={form.email}
@@ -63,7 +64,9 @@ export default function SignupForm() {
         error={errors.password.toString()}
       />
 
-      <button>Create Account</button>
+      <Button fullWidth type="submit">
+        Sign-up
+      </Button>
     </StyledForm>
   );
 }
