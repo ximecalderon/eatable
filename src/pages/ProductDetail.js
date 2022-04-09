@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { getProduct } from '../services/product-service';
 import FoodDetail from '../components/FoodDetail';
 
-const ProductDetail = ({ navigation }) => {
+const ProductDetail = ({ onAddCart }) => {
     const { setTitle } = useOutletContext();
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const navigate = useNavigate();
 
     const handleAddProduct = () => {
+        onAddCart(product);
         navigate('/');
     };
 
