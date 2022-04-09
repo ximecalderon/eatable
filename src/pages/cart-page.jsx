@@ -4,6 +4,7 @@ import { Link, useOutletContext } from "react-router-dom";
 import CartCard from "../components/CartCard/card-cart";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
+import { localStorageKey } from "../config";
 
 const CartContainer = styled.div`
   display: flex;
@@ -58,7 +59,9 @@ const TotalNumber = styled.p`
   ${typography.weigth.semibold}
 `;
 
-function CartPage({ products, handleOrderData }) {
+function CartPage({ handleOrderData }) {
+  const products = JSON.parse(localStorage.getItem(localStorageKey));
+  console.log(products)
   //Sets the name of the page
   const { setTitle } = useOutletContext();
   useEffect(() => {

@@ -17,13 +17,14 @@ const Layout = () => {
 
     return (
         <LayoutStyles>
-            <Header>
+            {title || title === "" ? <Header>
                 <AiOutlineLeft
                     style={{ position: 'absolute', fontSize: 25 }}
                     onClick={handleBack}
                 />
                 <Title>{title}</Title>
-            </Header>
+            </Header> :
+                null}
             <Outlet context={{ setTitle }} />
             <nav>
                 <ItemsNav>
