@@ -40,7 +40,7 @@ export const Header = styled.div`
 
 export const ProductsContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 281px);
   display: grid;
   gap: 1.25rem 0;
   grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
@@ -55,6 +55,7 @@ export const ProductsContainer = styled.div`
 `;
 
 export const CategoriesContainer = styled.div`
+  width: 100%;
   padding: 0 2rem; 
   overflow-x: scroll;
   white-space: nowrap;
