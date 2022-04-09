@@ -108,6 +108,6 @@ export const global = css`
         background-color: ${colors.backgroundGray};
         box-shadow: ${shadow.pageHeader};
         border-radius: 25px;
-        padding: 1.5rem;
+        padding: 1.5rem 2.5rem;
     }
 `;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import CartCard from "../components/CartCard/card-cart";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
@@ -20,7 +20,10 @@ const ContTotalPrice = styled.div`
   align-items: center;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 19.3rem;
   height: 4.875rem;
   background-color: ${colors.orange};
@@ -28,6 +31,8 @@ const StyledButton = styled.button`
   border-radius: 1.875rem;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+  ${typography.weigth.semibold}
 `;
 
 const FooterContainer = styled.footer`
@@ -53,7 +58,7 @@ const TotalNumber = styled.p`
   ${typography.weigth.semibold}
 `;
 
-function CartPage({ products }) {
+function CartPage({ products, handleOrderData }) {
   //Sets the name of the page
   const { setTitle } = useOutletContext();
   useEffect(() => {
@@ -86,19 +91,9 @@ function CartPage({ products }) {
   }
 
   const DataCart = { first, total };
-  console.log(DataCart);
 
   return (
     <CartContainer>
-      {/* <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "2.5rem",
-          fontSize: "1.625rem",
-        }}
-      >
-        Cart
-      </h1> */}
       <CardsContainer>
         {products.map((product) => (
           <CartCard
@@ -116,7 +111,9 @@ function CartPage({ products }) {
           <TotalText>Total</TotalText>
           <TotalNumber>${(total / 100).toFixed(2)}</TotalNumber>
         </ContTotalPrice>
-        <StyledButton>Checkout</StyledButton>
+        <StyledButton to="/checkout" onClick={() => handleOrderData(DataCart)}>
+          Checkout
+        </StyledButton>
       </FooterContainer>
     </CartContainer>
   );
