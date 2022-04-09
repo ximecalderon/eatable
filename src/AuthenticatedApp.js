@@ -7,6 +7,8 @@ import CheckoutPage from "./pages/checkout-page";
 import { ProductsProvider } from "./context/products-context";
 import { useEffect, useState } from "react";
 import { localStorageKey } from "./config";
+import ProfilePage from "./pages/profile";
+import HistoryPage from "./pages/history/history-page";
 
 function AuthenticatedApp() {
   const [cartProducts, setCartProducts] = useState([]);
@@ -34,8 +36,9 @@ function AuthenticatedApp() {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/products/:id" element={<ProductDetail onAddCart={handleCart} />} />
-          <Route path="/history" element={<div>History</div>} />
-          <Route path="/profile" element={<div>Profile</div>} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+
           <Route
             path="/cart"
             element={

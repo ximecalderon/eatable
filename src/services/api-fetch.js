@@ -30,6 +30,7 @@ export default async function apiFetch(
 
   let data;
   if (!response.ok) {
+    console.log("ga");
     if (response.status === 401) sessionStorage.removeItem(tokenKey);
     try {
       data = await response.json();
