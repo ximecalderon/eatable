@@ -1,5 +1,5 @@
 import HomePage from "./pages/HomePage";
-import CartPage from "./pages/cart-page";
+import CartPage from "./pages/CartPage/cart-page";
 import ProductDetail from "./pages/ProductDetail";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
@@ -16,7 +16,7 @@ function AuthenticatedApp() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(localStorageKey));
-    setCartProducts(data ? data : [])
+    setCartProducts(data ? data : []);
   }, []);
 
   function handleCart(newProduct) {
@@ -24,26 +24,27 @@ function AuthenticatedApp() {
 
     setCartProducts(newCartProducts);
     localStorage.setItem(localStorageKey, JSON.stringify(newCartProducts));
-  };
+  }
 
   function handleOrderData(value) {
     setOrderData(value);
-  };
+  }
 
   return (
     <ProductsProvider>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/products/:id" element={<ProductDetail onAddCart={handleCart} />} />
+          <Route
+            path="/products/:id"
+            element={<ProductDetail onAddCart={handleCart} />}
+          />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
 
           <Route
             path="/cart"
-            element={
-              <CartPage handleOrderData={handleOrderData} />
-            }
+            element={<CartPage handleOrderData={handleOrderData} />}
           />
           <Route
             path="/checkout"
