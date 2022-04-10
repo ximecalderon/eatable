@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { typography } from '../../styles/typography';
+import { shadow } from '../../styles/colors';
 
 export const LayoutStyles = styled.div`
     display: flex;
