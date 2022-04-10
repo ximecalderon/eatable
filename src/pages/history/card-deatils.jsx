@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { Title } from "../../components/FoodCard/styles";
+import { colors } from "../../styles/colors";
+import { typography } from "../../styles/typography";
 
 const OrderCard = styled.div`
   display: flex;
@@ -23,6 +26,10 @@ const Displayable = styled.div`
 const OrderDetail = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const SubTitle = styled.p`
+  ${typography.weigth.semibold}
 `;
 
 function CardOrder({ order }) {
@@ -48,17 +55,23 @@ function CardOrder({ order }) {
       <OrderCard>
         <p>{date}</p>
         <PriceCont>
-          <p>{order.items_count}</p>
-          <p>${(order.total / 100).toFixed(2)}</p>
+          <p>{order.items_count} items</p>
+          <p style={{ color: colors.orange }}>
+            ${(order.total / 100).toFixed(2)}
+          </p>
         </PriceCont>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
         </div>
         <Displayable show={open}>
-          <h4>Order</h4>
+          <SubTitle>Order</SubTitle>
           {order.order_details.map((detail) => {
             return <OrderDetailed key={detail.id} detail={detail} />;
           })}
+          <div style={{ justifyContent: "start" }}>
+            <SubTitle>Delivery</SubTitle>
+            <p>{order.delivery_address}</p>
+          </div>
         </Displayable>
       </OrderCard>
     </div>
