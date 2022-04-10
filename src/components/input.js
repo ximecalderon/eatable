@@ -10,14 +10,14 @@ const StyledInput = styled.input`
   outline: 0;
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
 `;
 
-const Label = styled.p`
+export const Label = styled.p`
   ${typography.size.caption}
   ${typography.weigth.semibold}
   color: ${colors.gray};

@@ -9,7 +9,7 @@ const OrdersContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-height: 100%;
+  max-height: 100vh;
   overflow-y: scroll;
 `;
 

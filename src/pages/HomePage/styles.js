@@ -16,6 +16,7 @@ export const CartButton = css`
     color: ${colors.orange};
   }
 `;
+
 export const SearchContainer = styled.div`
   width: 100%;
   display: flex;
@@ -23,6 +24,7 @@ export const SearchContainer = styled.div`
   align-items: center;
   gap: 1rem;
 `;
+
 
 export const Container = styled.div`
   display: flex;

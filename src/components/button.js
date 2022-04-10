@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: center;
