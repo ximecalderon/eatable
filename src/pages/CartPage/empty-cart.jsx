@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { RiCalendarTodoLine } from "react-icons/ri";
 import { colors } from "../../styles/colors";
 import { typography } from "../../styles/typography";
+import { FiShoppingCart } from "react-icons/fi";
 
 const EmptyContainer = styled.div`
   display: flex;
@@ -15,19 +15,19 @@ const EmptySubtitle = styled.p`
   ${typography.weigth.semibold}
 `;
 
-const IconEmpty = styled(RiCalendarTodoLine)`
-  color: ${colors.gray};
+const IconEmpty = styled(FiShoppingCart)`
   width: 106px;
   height: 118px;
+  color: ${colors.gray};
 `;
 
-function EmptyHistory() {
+function EmptyCart() {
   return (
     <EmptyContainer>
       <IconEmpty />
-      <EmptySubtitle>No history yet</EmptySubtitle>
+      <EmptySubtitle>No items in the cart</EmptySubtitle>
     </EmptyContainer>
   );
 }
 
-export default EmptyHistory;
+export default EmptyCart;

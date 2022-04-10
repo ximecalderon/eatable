@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { localStorageKey } from "../config";
 import { useAuth } from "../context/auth-context";
 import { createOrder } from "../services/order-service";
 import { colors } from "../styles/colors";
@@ -89,6 +90,7 @@ function CheckoutPage({ orderData }) {
   }, [setTitle]);
   async function completeOrder() {
     createOrder(order);
+    localStorage.removeItem(localStorageKey);
     navigate("/history");
   }
 
