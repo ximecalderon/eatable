@@ -6,13 +6,14 @@ const FoodDetail = ({ product, handleAddProduct }) => {
     const data = JSON.parse(localStorage.getItem(localStorageKey));
     const onCart = data?.some(prod => +prod.id === product.id);
 
+    const formattedPrice = "$" + Intl.NumberFormat('en-US').format(product.price / 100);
     return (
         <Container>
             <Image src={product.picture_url} alt={product.name} />
             <div>
                 <div style={{ textAlign: 'center' }}>
                     <Product>{product.name}</Product>
-                    <Price>$ {product.price}</Price>
+                    <Price>{formattedPrice}</Price>
                 </div>
 
                 <div>
