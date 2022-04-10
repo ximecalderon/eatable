@@ -5,7 +5,6 @@ import CartCard from "../../components/CartCard/card-cart";
 import { colors } from "../../styles/colors";
 import { typography } from "../../styles/typography";
 import { localStorageKey } from "../../config";
-import EmptyCard from "./empty-cart";
 import EmptyCart from "./empty-cart";
 
 const CartContainer = styled.div`
@@ -63,13 +62,11 @@ const TotalNumber = styled.p`
 
 function CartPage({ handleOrderData }) {
   const products = JSON.parse(localStorage.getItem(localStorageKey));
-  console.log(products);
 
   const { setTitle } = useOutletContext();
   useEffect(() => {
     setTitle("Cart");
   }, [setTitle]);
-
   const startValues = products?.map((product) => {
     return { id: product.id, price: product.price };
   });

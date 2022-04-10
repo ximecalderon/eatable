@@ -17,6 +17,15 @@ export const CartButton = css`
   }
 `;
 
+export const SearchContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,8 +36,10 @@ export const Container = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items:center;
   gap: 1.375rem;
+  height: calc(100vh - 251px);
 `;
 
 export const Header = styled.div`
@@ -41,7 +52,7 @@ export const ProductsContainer = styled.div`
   width: 100%;
   height: calc(100vh - 281px);
   display: grid;
-  gap: 1.25rem 0;
+  gap: 1.25rem;
   grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   justify-items: center;
   align-content: flex-start;
