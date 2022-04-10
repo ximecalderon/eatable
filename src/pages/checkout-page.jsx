@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { localStorageKey } from "../config";
 import { useAuth } from "../context/auth-context";
-import apiFetch from "../services/api-fetch";
 import { createOrder } from "../services/order-service";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
@@ -80,10 +81,16 @@ const StyledButton = styled.button`
 `;
 
 function CheckoutPage({ orderData }) {
+  const { setTitle } = useOutletContext();
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  useEffect(() => {
+    setTitle("Checkout");
+  }, [setTitle]);
   async function completeOrder() {
     createOrder(order);
+    localStorage.removeItem(localStorageKey);
     navigate("/history");
   }
 
@@ -98,15 +105,6 @@ function CheckoutPage({ orderData }) {
   console.log(order);
   return (
     <CheckoutContainer>
-      <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "2.5rem",
-          fontSize: "1.625rem",
-        }}
-      >
-        Checkout
-      </h1>
       <TextDelivery>Delivery</TextDelivery>
       <SubContainer>
         <StyledTextBold>Address details</StyledTextBold>

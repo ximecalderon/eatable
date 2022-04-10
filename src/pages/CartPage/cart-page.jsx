@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
-import CartCard from "../components/CartCard/card-cart";
-import { colors } from "../styles/colors";
-import { typography } from "../styles/typography";
-import { localStorageKey } from "../config";
+import CartCard from "../../components/CartCard/card-cart";
+import { colors } from "../../styles/colors";
+import { typography } from "../../styles/typography";
+import { localStorageKey } from "../../config";
+import EmptyCard from "./empty-cart";
+import EmptyCart from "./empty-cart";
 
 const CartContainer = styled.div`
   display: flex;
@@ -61,19 +63,19 @@ const TotalNumber = styled.p`
 
 function CartPage({ handleOrderData }) {
   const products = JSON.parse(localStorage.getItem(localStorageKey));
-  console.log(products)
-  //Sets the name of the page
+  console.log(products);
+
   const { setTitle } = useOutletContext();
   useEffect(() => {
     setTitle("Cart");
   }, [setTitle]);
-  //
-  const startValues = products.map((product) => {
+
+  const startValues = products?.map((product) => {
     return { id: product.id, price: product.price };
   });
 
   const totalPrice = startValues
-    .map((value) => value.price)
+    ?.map((value) => value.price)
     .reduce((a, b) => a + b);
 
   const [total, setTotal] = useState(totalPrice);
@@ -96,29 +98,38 @@ function CartPage({ handleOrderData }) {
   const DataCart = { first, total };
 
   return (
-    <CartContainer>
-      <CardsContainer>
-        {products.map((product) => (
-          <CartCard
-            key={product.id}
-            handleChange={handleChange}
-            product={product}
-            first={first}
-            handleTotal={handleTotal}
-            initialValue={startValues}
-          />
-        ))}
-      </CardsContainer>
-      <FooterContainer>
-        <ContTotalPrice>
-          <TotalText>Total</TotalText>
-          <TotalNumber>${(total / 100).toFixed(2)}</TotalNumber>
-        </ContTotalPrice>
-        <StyledButton to="/checkout" onClick={() => handleOrderData(DataCart)}>
-          Checkout
-        </StyledButton>
-      </FooterContainer>
-    </CartContainer>
+    <>
+      {products ? (
+        <CartContainer>
+          <CardsContainer>
+            {products.map((product) => (
+              <CartCard
+                key={product.id}
+                handleChange={handleChange}
+                product={product}
+                first={first}
+                handleTotal={handleTotal}
+                initialValue={startValues}
+              />
+            ))}
+          </CardsContainer>
+          <FooterContainer>
+            <ContTotalPrice>
+              <TotalText>Total</TotalText>
+              <TotalNumber>${(total / 100).toFixed(2)}</TotalNumber>
+            </ContTotalPrice>
+            <StyledButton
+              to="/checkout"
+              onClick={() => handleOrderData(DataCart)}
+            >
+              Checkout
+            </StyledButton>
+          </FooterContainer>
+        </CartContainer>
+      ) : (
+        <EmptyCart />
+      )}
+    </>
   );
 }
 
