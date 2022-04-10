@@ -1,7 +1,7 @@
 import * as Styled from "./styles";
 import FoodCard from "../../components/FoodCard";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SearchMain({ products, search }) {
   const [results, setResults] = useState(null);
@@ -11,7 +11,9 @@ function SearchMain({ products, search }) {
     setLoading(true);
     const delayDebounce = setTimeout(() => {
       setResults(products.filter(product => {
-        return product.name.split(" ").includes(search.toLowerCase())
+        return product.name.split(" ")
+          .map(productName => productName.toLowerCase())
+          .includes(search.toLowerCase())
       }))
       setLoading(false);
     }, 1000);

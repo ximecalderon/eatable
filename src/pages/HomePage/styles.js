@@ -42,7 +42,7 @@ export const ProductsContainer = styled.div`
   width: 100%;
   height: calc(100vh - 281px);
   display: grid;
-  gap: 1.25rem 0;
+  gap: 1.25rem;
   grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   justify-items: center;
   align-content: flex-start;

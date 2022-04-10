@@ -61,14 +61,14 @@ const TotalNumber = styled.p`
 
 function CartPage({ handleOrderData }) {
   const products = JSON.parse(localStorage.getItem(localStorageKey));
-  console.log(products)
+
   //Sets the name of the page
   const { setTitle } = useOutletContext();
   useEffect(() => {
     setTitle("Cart");
   }, [setTitle]);
   //
-  const startValues = products.map((product) => {
+  const startValues = products?.map((product) => {
     return { id: product.id, price: product.price };
   });
 
