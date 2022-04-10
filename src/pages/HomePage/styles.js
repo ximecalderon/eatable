@@ -6,16 +6,16 @@ import { typography } from "../../styles/typography";
 export const Message = styled.span`
   ${typography.size.xl}
   ${typography.weigth.semibold}
-`
+`;
 export const CartButton = css`
   font-size: 1.5rem;
   cursor: pointer;
   color: ${colors.gray};
 
   &:hover {
-    color: ${colors.orange}
+    color: ${colors.orange};
   }
-`
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const Container = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   gap: 1.375rem;
 `;
 
@@ -35,7 +35,6 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 
 `;
 
 export const ProductsContainer = styled.div`
@@ -48,7 +47,7 @@ export const ProductsContainer = styled.div`
   align-content: flex-start;
   overflow-y: scroll;
   scrollbar-width: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -56,11 +55,11 @@ export const ProductsContainer = styled.div`
 
 export const CategoriesContainer = styled.div`
   width: 100%;
-  padding: 0 2rem; 
+  padding: 0 2rem;
   overflow-x: scroll;
   white-space: nowrap;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;

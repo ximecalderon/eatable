@@ -9,6 +9,13 @@ const OrdersContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-height: 100vh;
+  overflow-y: scroll;
+`;
+
+const ContainerHistories = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 function HistoryPage() {
@@ -23,13 +30,13 @@ function HistoryPage() {
   if (orders.length === 0) return <EmptyHistory />;
 
   return (
-    <div style={{ height: "100%" }}>
+    <ContainerHistories>
       <OrdersContainer>
         {orders.map((order) => {
           return <CardOrder key={order.id} order={order} />;
         })}
       </OrdersContainer>
-    </div>
+    </ContainerHistories>
   );
 }
 
