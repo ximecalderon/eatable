@@ -102,7 +102,6 @@ function CheckoutPage({ orderData }) {
     delivery_address: user.address,
     items: orderData.first,
   };
-  console.log(order);
   return (
     <CheckoutContainer>
       <TextDelivery>Delivery</TextDelivery>
