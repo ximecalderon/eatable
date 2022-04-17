@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, logout } from "../services/session-service.js";
-import { createUser, getUser } from "../services/users-service";
+import { createUser, getUser, updateUser } from "../services/users-service";
 
 const AuthContext = createContext();
 
@@ -27,7 +27,14 @@ function AuthProvider({ children }) {
       setUser(user);
       navigate("/profile");
     });
-  }
+  };
+
+  function handleUpdate(userData) {
+    return updateUser(userData)
+      .then(user => {
+        setUser(user);
+      })
+  };
 
   function handleLogout() {
     return logout().finally(() => {
@@ -43,6 +50,7 @@ function AuthProvider({ children }) {
         login: handleLogin,
         signup: handleSignup,
         logout: handleLogout,
+        update: handleUpdate,
       }}
     >
       {children}

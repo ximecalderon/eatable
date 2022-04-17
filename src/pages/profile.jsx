@@ -5,7 +5,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { StyledButton } from "../components/button";
 import { InputContainer, Label } from "../components/input";
 import { useAuth } from "../context/auth-context";
-import { updateUser } from "../services/users-service";
+// import { updateUser } from "../services/users-service";
 import { typography } from "../styles/typography";
 import "../components/styles.css";
 
@@ -40,13 +40,14 @@ const TextBold = styled.p`
 
 function ProfilePage() {
   const { setTitle } = useOutletContext();
-  const { user } = useAuth();
+  const { user, update } = useAuth();
   const navigate = useNavigate();
+
   const initialValues = {
-    name: user.name,
+    name: user.name || "",
     email: user.email,
-    phone: user.phone,
-    address: user.address,
+    phone: user.phone || "",
+    address: user.address || "",
   };
 
   useEffect(() => {
@@ -62,7 +63,7 @@ function ProfilePage() {
   }
   async function onSubmit(data) {
     try {
-      updateUser(data);
+      update(data);
       navigate("/");
     } catch (error) {
       console.log(error.message);
