@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Global styles={reset} />
     <Global styles={global} />
-    <BrowserRouter>
+    <BrowserRouter basename="/eatable">
       <AuthProvider>
         <App />
       </AuthProvider>
